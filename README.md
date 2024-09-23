@@ -3,7 +3,7 @@
 # All handpainted and drawn art + text-adventure type interface
 ![Castle on an Island in the Sea](/public/images/scotland1.webp)
 
-1. Quick demo to test gameplay and feasibility
+1. Demo to test gameplay and feasibility
    1. Show images and some text.
    2. Provide input box.
    3. Computer responds
