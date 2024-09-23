@@ -6,8 +6,8 @@ const App = () => {
   const [hp, setHP] = useState(pc.getHP());
   console.log(pc.getHP(), pc.getName())
 
-  const handleHPclick = () => {
-    pc.takeDamage(1);
+  const handleHPclick = (amt) => {
+    pc.adjustHP(amt);
     setHP(pc.getHP())
   }
 
@@ -17,10 +17,12 @@ const App = () => {
         <h1 className="text-3xl font-bold underline text-center p-2">
           Nameless RPG
           | Name: {pc.getName()}
-          | {hp>0? `HP: ${hp}`: "DEAD"}
+          | {hp > 0 ? `HP: ${hp}` : "DEAD"}
         </h1>
         <button className="m-2 border border-red-500 text-red-500 bg-transparent hover:bg-red-500 hover:text-white font-bold py-2 px-4 rounded"
-          onClick={(handleHPclick)}>Deal 1 HP Damage</button>
+          onClick={() => (handleHPclick(-1))}>Deal 1 HP Damage</button>
+        <button className="m-2 border border-green-500 text-green-500 bg-transparent hover:bg-green-500 hover:text-white font-bold py-2 px-4 rounded"
+          onClick={() => (handleHPclick(1))}>Heal 1 HP</button>
         {/* <div className="w-full h-70%"> */}
         <img className="w-full h-full object-cover" src="images/scotland3.webp" />
         {/* </div> */}
