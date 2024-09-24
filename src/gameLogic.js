@@ -31,7 +31,7 @@ class Character {
     this.hp += amount
     amount > 0? console.log('healing...') : console.log(`%c${this.name} loses ${amount} HP.`, "color: red; font-weight: bold;");
     console.log(`%cCurrent HP: ${this.hp}`, "color: lightblue; font-weight: bold;");
-    if (this.hp <=0) {
+    if (this.hp <0) {
       this.alive = false;
       death()
     }
