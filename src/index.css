@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "harri-text", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1 {
+font-family: "harri", sans-serif;
+font-weight: 400;
+font-style: normal;
+}
+
+/* FONT OPTIONS */
+/* font-family: "harri-text", sans-serif;
+font-weight: 200;
+font-style: normal;
+
+font-family: "harri-text", sans-serif;
+font-weight: 200;
+font-style: italic;
+
+font-family: "harri-text", sans-serif;
+font-weight: 400;
+font-style: normal;
+
+font-family: "harri-text", sans-serif;
+font-weight: 400;
+font-style: italic;
+
+font-family: "harri-text", sans-serif;
+font-weight: 700;
+font-style: normal; */

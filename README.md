@@ -23,6 +23,10 @@
    
 ### V1: TBD
 
-1. NEXT UP:
+### V1: Get some scenes and gameplay going on
+1. Created a Room class, to start planning the data needed for play mechanincs, like exits, actions, descriptions...Creating these classes will inform how to make this all work.
+2. Added in an Adobe web fonts: Harri Text and Harri (Display) I'm not sure if I love them yet, but the default Tailwind font was bothering me. https://fonts.adobe.com/fonts/harri-text 
+
+TBD
    1. Start with Splash Screen
    2. Go to gameplay
