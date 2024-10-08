@@ -8,16 +8,23 @@ const Terminal = ({ commands, setCommands, room }) => {
     if (inputValue.trim()) {
       console.log(inputValue)
       // trigger DO SOMETHING FUNCTION
-      setCommands((commands) => [...commands, inputValue]);
+      
+      setCommands((commands) => [...commands, ["pc", inputValue]]);
       setInputValue('')
     }
   }
 
   useEffect(()=>{console.log("Commands: ", commands)},[commands])
 
+  useEffect(()=>{
+    setCommands((commands) => [...commands, ["dm", room.getDescription()]]);
+  },[])
+
+  
+
   
   return (
-    <div className="fixed bottom-0 left-[10vw] right-[10vw] bottom-[5vh] p-4 z-10 h-[25vh] rounded-lg bg-black bg-opacity-85 text-blue-300 border-4 border-yellow-300 ">
+    <div className="fixed bottom-0 left-[10vw] right-[10vw] bottom-[5vh] p-4 z-10 h-[25vh] rounded-lg bg-black bg-opacity-90 text-[#87CEEB] border-4 border-yellow-300 ">
       <h2>{room.getDescription()}</h2>
       <form id="userInput" onSubmit={onSubmit}>
         <label htmlFor="command">&gt; </label>

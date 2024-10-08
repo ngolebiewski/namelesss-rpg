@@ -56,18 +56,17 @@ class Character {
       `%cCurrent HP: ${this.hp}`,
       "color: lightblue; font-weight: bold;"
     );
-
     // Cap HP to maxHP
-    // if (this.hp > this.maxHP) {
-    //   this.hp = this.maxHP;
-    //   console.log(`You've reached the maximum HP: ${this.maxHP}, cannot heal any higher`)
-    // }
-
+    if (this.hp > this.maxHP) {
+      this.hp = this.maxHP;
+      console.log(`You've reached the maximum HP: ${this.maxHP}, cannot heal any higher`)
+    }
     // Check for death
     if (this.hp <= 0) {
       this.alive = false;
       console.log(this.death());
     }
+
   }
 
   death() {
@@ -135,7 +134,7 @@ class Room {
 ///////
 
 // Create an instance of Room
-const farmField = new Room({
+export const farmField = new Room({
   key: 'field',
   name: "Farm Field with mountains in the distance",
   description:
@@ -147,5 +146,27 @@ const farmField = new Room({
   alt: "Sky, mountains in the distance, and a green field going back into the distance.",
 });
 
+const mistyMountains = new Room({
+  key: 'mistyMountains',
+  name: "Craggy mountains surrounded by mist",
+  description:
+    "You're standing in a farmer's field, sheep graze in the far distance. The wind isn't howling, but it could be soon as you feel your shoulder-length hair whip around in the breeze...",
+  items: [],
+  exits: { north: [ "misty-mountains", "There are mountains to the north with a tinge of mist"], south: ["sea", "You hear the sound of the sea to the south."] }, // direction: [ key , description ]
+  actions: {}, 
+  imageURL: "images/scotland3.webp",
+  alt: "Sky, mountains in the distance, and a green field going back into the distance.",
+});
+
+const xpChart = {
+  1:0,
+  2:200,
+  3:400,
+  4:800,
+  5:1600,
+  6:3200,
+  7:6400
+}
+
 // Export the classes and instance
-export { Character, Room, farmField };
+export { Character, Room };
