@@ -10,6 +10,7 @@ class Character {
     this.xp = 0;
     this.items = [];
     this.path = [];
+    this.equipped = 'Nothing'
   }
 
   getName() {
@@ -26,6 +27,18 @@ class Character {
 
   getLevel() {
     return this.level;
+  }
+
+  getStats() {
+    return {
+      'hp':this.hp,
+      'xp':this.xp,
+      'name':this.name,
+      'level':this.level,
+      'eqipped':this.equipped,
+      'maxHP':this.maxHP,
+      'name':this.name
+    }
   }
 
   // Adjust HP: + amount for healing, - amount for damage
@@ -118,6 +131,7 @@ class Room {
 ////////
 //      Perhaps an object of all the Room objects would be best to make it easier to export. Key: Room object for the structure. 
 //      When there's 100 rooms it would start to get ridiculous having that many imports and exports.
+//      Or set up as modules. Like, castle island. Goblin Caverns
 ///////
 
 // Create an instance of Room
@@ -128,7 +142,7 @@ const farmField = new Room({
     "You're standing in a farmer's field, sheep graze in the far distance. The wind isn't howling, but it could be soon as you feel your shoulder-length hair whip around in the breeze...",
   items: [],
   exits: { north: [ "misty-mountains", "There are mountains to the north with a tinge of mist"], south: ["sea", "You hear the sound of the sea to the south."] }, // direction: [ key , description ]
-  actions: {}, // Assuming you will define actions later
+  actions: {}, 
   imageURL: "images/scotland3.webp",
   alt: "Sky, mountains in the distance, and a green field going back into the distance.",
 });
