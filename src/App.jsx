@@ -57,7 +57,7 @@ const App = () => {
         {/* <div className="w-full h-70%"> */}
         {/* Control image visibility with showImage state */}
 
-        <div className={`bg-black transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`w-full h-full object-cover bg-black transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
           <img className="w-full h-full object-cover" src={bgImage} alt={room.alt} />
         </div>
 
