@@ -3,6 +3,8 @@ import * as parser from "./inputParser"
 
 const Terminal = ({ commands, setCommands, room, setRoom }) => {
   const [inputValue, setInputValue] = useState('');
+  const [displayedDescription, setDisplayedDescription] = useState(''); // State for typewriter effect
+  
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +19,7 @@ const Terminal = ({ commands, setCommands, room, setRoom }) => {
     }
   }
 
-  useEffect(() => { console.log("Commands: ", commands) }, [commands])
+  // useEffect(() => { console.log("Commands: ", commands) }, [commands])
 
   useEffect(() => {
     if (room.getDescription() !== commands[-1]) {
@@ -26,10 +28,28 @@ const Terminal = ({ commands, setCommands, room, setRoom }) => {
   }, [room])
 
 
+  useEffect(() => {
+    const description = "  " + room.getDescription();
+    setDisplayedDescription(''); 
+
+    let index = 0;
+
+    const typeWriter = () => {
+      if (index < description.length) {
+        setDisplayedDescription((prev) => prev + description.charAt(index));
+        index++;
+        setTimeout(typeWriter, 30);
+      }
+    };
+
+    typeWriter();
+
+    return () => clearTimeout(typeWriter);
+  }, [room]);
 
   return (
     <div className="fixed bottom-0 left-[10vw] right-[10vw] bottom-[5vh] p-4 z-10 min-h-[30vh] max-h-[50vh] rounded-lg bg-black bg-opacity-90 text-[#87CEEB] border-4 border-yellow-300 overflow-auto ">
-      <h2>{room.getDescription()}</h2>
+      <h2>{displayedDescription}</h2>
       <p className="text-red-500"> <span className="text-lime-500">**debug mode** Exits: </span>{
         Object.keys(room.exits).map((exit, index) => (
           <span key={index}>{exit.toUpperCase()}{index < Object.keys(room.exits).length - 1 ? ', ' : ''}</span>

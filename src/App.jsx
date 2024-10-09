@@ -11,22 +11,34 @@ const App = () => {
   const [commands, setCommands] = useState([]);
   const [room, setRoom] = useState(farmField);
   const [bgImage, setBgImage] = useState('images/scotland3.webp')
+  const [fade, setFade] = useState(true); // To trigger fade effect
+
 
   const handleHPclick = (amt) => {
     pc.adjustHP(amt);
     setHP(pc.getHP())
   }
 
+  // useEffect(() => {
+  //   const timeout = setTimeout(()=> {setBgImage(room.imageURL)}, 500)
+  //   return () => clearTimeout(timeout); 
+  // }, [room])
+
   useEffect(() => {
-    setBgImage(room.imageURL)
-    console.log(room.imageURL)
-  },[room])
+    setFade(false);
+    const timeout = setTimeout(() => {
+      setBgImage(room.imageURL);
+      setFade(true);
+    }, 500); // Match the duration of your fade-out animation (500ms)
+
+    return () => clearTimeout(timeout); // Cleanup the timeout when the component unmounts
+  }, [room]);
 
 
   return (
     <>
-      <div id="full-screen-container" className="w-screen h-screen overflow-hidden bg-rose">
-        <HUD hp={hp} stats={stats}/>
+      <div id="full-screen-container" className="w-screen h-screen overflow-hidden transition-colors duration-500 ${fade ? 'bg-rose-500' : 'bg-black'}">
+        <HUD hp={hp} stats={stats} />
         {/* <Splash /> */}
 
         {/* <h1 className="text-3xl underline text-center p-2">
@@ -43,12 +55,18 @@ const App = () => {
         </div> */}
 
         {/* <div className="w-full h-70%"> */}
-        <img className="w-full h-full object-cover" src={bgImage} />
+        {/* Control image visibility with showImage state */}
+        <div className="z-[-100] w-full h-full bg-black">
+          <div className={`bg-black transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+            <img className="w-full h-full object-cover" src={bgImage} alt={room.alt} />
+          </div>
+        </div>
+
         {/* </div> */}
         {/* <div className="w-full h-screen bg-indigo-500"></div> */}
         {/* <div className="w-100vw h-100vh bg-cover bg-center" style={{backgroundImage: "url('/images/scotland3.webp')"}}></div> */}
-      </div>
-      <Terminal commands={commands} setCommands={setCommands} room={room} setRoom={setRoom}/>
+      </div >
+      <Terminal commands={commands} setCommands={setCommands} room={room} setRoom={setRoom} />
     </>
   )
 }
