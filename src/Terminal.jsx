@@ -31,20 +31,21 @@ const Terminal = ({ commands, setCommands, room, setRoom }) => {
   useEffect(() => {
     const description = "  " + room.getDescription();
     setDisplayedDescription(''); 
-
+  
     let index = 0;
-
+    let timeoutId = null;
+  
     const typeWriter = () => {
       if (index < description.length) {
         setDisplayedDescription((prev) => prev + description.charAt(index));
         index++;
-        setTimeout(typeWriter, 30);
+        timeoutId = setTimeout(typeWriter, 25);
       }
     };
-
+  
     typeWriter();
-
-    return () => clearTimeout(typeWriter);
+  
+    return () => clearTimeout(timeoutId);
   }, [room]);
 
   return (

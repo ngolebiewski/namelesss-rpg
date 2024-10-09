@@ -37,7 +37,7 @@ const App = () => {
 
   return (
     <>
-      <div id="full-screen-container" className="w-screen h-screen overflow-hidden transition-colors duration-500 ${fade ? 'bg-rose-500' : 'bg-black'}">
+      <div id="full-screen-container" className="w-screen h-screen overflow-hidden bg-black transition-colors duration-500 ${fade ? 'bg-rose-500' : 'bg-black'}">
         <HUD hp={hp} stats={stats} />
         {/* <Splash /> */}
 
@@ -56,10 +56,9 @@ const App = () => {
 
         {/* <div className="w-full h-70%"> */}
         {/* Control image visibility with showImage state */}
-        <div className="z-[-100] w-full h-full bg-black">
-          <div className={`bg-black transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
-            <img className="w-full h-full object-cover" src={bgImage} alt={room.alt} />
-          </div>
+
+        <div className={`bg-black transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+          <img className="w-full h-full object-cover" src={bgImage} alt={room.alt} />
         </div>
 
         {/* </div> */}
