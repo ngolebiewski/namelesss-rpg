@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Character, Room, farmField } from './gameLogic.js'
+import { Character, Room, farmField, mistyMountains } from './gameLogic.js'
 import Splash from "./Splash.jsx";
 import Terminal from "./Terminal"
 import HUD from "./HUD"
@@ -9,16 +9,19 @@ const App = () => {
   const [hp, setHP] = useState(pc.getHP());
   const [stats, setStats] = useState(pc.getStats())
   const [commands, setCommands] = useState([]);
-  const [room] = useState(farmField);
-
-  console.log("Initial HP: ", hp); // Debugging log to check initial HP
+  const [room, setRoom] = useState(farmField);
+  const [bgImage, setBgImage] = useState('images/scotland3.webp')
 
   const handleHPclick = (amt) => {
     pc.adjustHP(amt);
     setHP(pc.getHP())
   }
 
-  console.log(room.printRoom())
+  useEffect(() => {
+    setBgImage(room.imageURL)
+    console.log(room.imageURL)
+  },[room])
+
 
   return (
     <>
@@ -40,12 +43,12 @@ const App = () => {
         </div> */}
 
         {/* <div className="w-full h-70%"> */}
-        <img className="w-full h-full object-cover" src="images/scotland3.webp" />
+        <img className="w-full h-full object-cover" src={bgImage} />
         {/* </div> */}
         {/* <div className="w-full h-screen bg-indigo-500"></div> */}
         {/* <div className="w-100vw h-100vh bg-cover bg-center" style={{backgroundImage: "url('/images/scotland3.webp')"}}></div> */}
       </div>
-      <Terminal commands={commands} setCommands={setCommands} room={room}/>
+      <Terminal commands={commands} setCommands={setCommands} room={room} setRoom={setRoom}/>
     </>
   )
 }
